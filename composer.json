@@ -1,0 +1,31 @@
+{
+    "name": "emmetblue/cloudmodules",
+    "type": "project",
+    "authors": [
+        {
+            "name": "samshal",
+            "email": "samueladeshina73@gmail.com"
+        }
+    ],
+    "config":{
+        "platform":{
+            "php":"7.0"
+        }
+    },
+    "repositories":[
+        {
+            "type":"vcs",
+            "url":"https://github.com/emmetblue/emmet-blue"
+        }
+    ],
+    "require": {
+        "emmetblue/emmet-blue":"dev-master"
+    },
+    "autoload":{
+        "psr-4":{
+            "EmmetBlueCloud\\":"./src"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable":true
+}
