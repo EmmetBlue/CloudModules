@@ -23,7 +23,7 @@
     },
     "autoload":{
         "psr-4":{
-            "EmmetBlueCloud\\":"./src"
+            "EmmetBlue\\Plugins\\":"./src"
         }
     },
     "minimum-stability": "dev",
