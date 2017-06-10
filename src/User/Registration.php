@@ -26,7 +26,7 @@ class Registration {
     		throw new \Exception("Invalid data provided");
     	}
 
-    	$query = "INSERT INTO user_id (user_email, user_alias) VALUES ('$mail', '$alias')";
+    	$query = "INSERT INTO user_id (email_address, user_alias) VALUES ('$mail', '$alias')";
     	try {
             $result = DBConnectionFactory::getConnection()->exec($query);           
         }
@@ -35,7 +35,7 @@ class Registration {
         }
 
     	if ($result){
-    		$id = $result["lastInsertId"];
+    		$id = DBConnectionFactory::getConnection()->query("SELECT user_id FROM user_id where email_address = '$mail'")->fetchAll(\PDO::FETCH_ASSOC)[0]["user_id"];
 
     		$result = Account\Account::create((int) $id, ["username"=>$username, "password"=>$password]);
     		if ($result){

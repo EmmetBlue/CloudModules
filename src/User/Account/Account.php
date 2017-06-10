@@ -38,7 +38,7 @@ class Account {
     }
 
     public static function activate(int $account){
-        $query = "UPDATE user_account SET account_status = 1 WHERE account_id = $account";
+        $query = "UPDATE user_account SET verify_status = 1 WHERE account_id = $account";
 
         return DBConnectionFactory::getConnection()->exec($query);
     }
