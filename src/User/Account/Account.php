@@ -1,0 +1,56 @@
+<?php declare(strict_types=1);
+/**
+ * @author Samuel Adeshina <samueladeshina73@gmail.com>
+ */
+namespace EmmetBlue\Plugins\User\Account;
+
+use EmmetBlue\Core\Builder\BuilderFactory as Builder;
+use EmmetBlue\Core\Factory\DatabaseConnectionFactory as DBConnectionFactory;
+use EmmetBlue\Core\Factory\DatabaseQueryFactory as DBQueryFactory;
+use EmmetBlue\Core\Builder\QueryBuilder\QueryBuilder as QB;
+use EmmetBlue\Core\Exception\SQLException;
+use EmmetBlue\Core\Session\Session;
+use EmmetBlue\Core\Logger\DatabaseLog;
+use EmmetBlue\Core\Logger\ErrorLog;
+use EmmetBlue\Core\Constant;
+
+class Account {
+	public static function create(int $user, array $data)
+    {
+    	$username = $data["username"] ?? null;
+    	$password = $data["password"] ?? null;
+
+    	if (is_null($username) || is_null($password)){
+    		throw new \Exception("Invalid data provided");
+    	}
+
+        $password = password_hash($password, PASSWORD_DEFAULT);
+
+    	$query = "INSERT INTO user_account (user_id, username, password) VALUES ($user, '$username', '$password')";
+        try {
+            $result = DBConnectionFactory::getConnection()->exec($query);           
+        }
+        catch(\PDOException $e){
+            $result = false;
+        }
+
+    	return $result;
+    }
+
+    public static function activate(int $account){
+        $query = "UPDATE user_account SET account_status = 1 WHERE account_id = $account";
+
+        return DBConnectionFactory::getConnection()->exec($query);
+    }
+
+    protected static function toggleLockStatus(int $account, bool $lock){
+        $lock = (int)$lock;
+        $query = "UPDATE user_account SET lock_status = $lock WHERE account_id = $account";
+
+        return DBConnectionFactory::getConnection()->exec($query);
+    }
+
+    public static function setLockStatus(int $account, array $data){
+        return self::toggleLockStatus($account, (bool) $data["status"]);
+    }
+}

@@ -1,10 +1,6 @@
 <?php declare(strict_types=1);
 /**
- * @license MIT
- * @author Samuel Adeshina <samueladeshina73@gmail.calculhmac(clent, data)om>
- *
- * This file is part of the EmmetBlue project, please read the license document
- * available in the root level of the project
+ * @author Samuel Adeshina <samueladeshina73@gmail.com>
  */
 namespace EmmetBlue\Plugins\User;
 
@@ -18,17 +14,46 @@ use EmmetBlue\Core\Logger\DatabaseLog;
 use EmmetBlue\Core\Logger\ErrorLog;
 use EmmetBlue\Core\Constant;
 
-/**
- * class AccountRegister.
- *
- * AccountRegister Controller
- *
- * @author Samuel Adeshina <samueladeshina73@gmail.com>
- * @since v0.0.1 05/06/2017 8:59
- */
 class Registration {
 	public static function newRegistration(array $data)
     {
-        return $data;
+    	$username = $data["username"] ?? null;
+    	$password = $data["password"] ?? null;
+    	$alias = $data["alias"] ?? null;
+    	$mail = $data["email"] ?? null;
+
+    	if (is_null($username) || is_null($password) || is_null($mail) || is_null($alias)){
+    		throw new \Exception("Invalid data provided");
+    	}
+
+    	$query = "INSERT INTO user_id (user_email, user_alias) VALUES ('$mail', '$alias')";
+    	try {
+            $result = DBConnectionFactory::getConnection()->exec($query);           
+        }
+        catch(\PDOException $e){
+            $result = false;
+        }
+
+    	if ($result){
+    		$id = $result["lastInsertId"];
+
+    		$result = Account\Account::create((int) $id, ["username"=>$username, "password"=>$password]);
+    		if ($result){
+    			return $result;
+    		}
+    		else {
+    			self::dropUser((int) $id);
+    			throw new \Exception("Unable to complete registration");
+    		}
+    	}
+    	else {
+    		throw new \Exception("Unable to complete registration");
+    	}
+    }
+
+    public static function dropUser(int $user){
+    	$query = "DELETE FROM user_id WHERE user_id = $user";
+
+    	return DBConnectionFactory::getConnection()->exec($query);
     }
 }
