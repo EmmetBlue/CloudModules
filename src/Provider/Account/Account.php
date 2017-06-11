@@ -50,4 +50,15 @@ class Account {
 
         return $result[0] ?? false;
     }
+
+    protected static function toggleStatus(int $provider, bool $lock){
+        $lock = (int)$lock;
+        $query = "UPDATE provider SET provider_status = $lock WHERE provider_id = $account";
+
+        return DBConnectionFactory::getConnection()->exec($query);
+    }
+
+    public static function setStatus(int $provider, array $data){
+        return self::toggleStatus($provider, (bool) $data["status"]);
+    }
 }

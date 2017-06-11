@@ -13,7 +13,11 @@ class Account {
         return Account\Account::getProvider($resourceId);
     }
 
-    public static function getProviderByAlis(array $resource){
-        return Account\Account::getProviderByAlis($resource);
+    public static function getProviderByAlias(array $resource){
+        return Account\Account::getProviderByAlias($resource);
+    }
+    
+    public static function setStatus(int $provider, array $data){
+        return Account\Account::setStatus($provider, $data);
     }
 }
