@@ -53,4 +53,10 @@ class Account {
     public static function setLockStatus(int $account, array $data){
         return self::toggleLockStatus($account, (bool) $data["status"]);
     }
+
+    public static function viewAccount(int $account){
+        $query = "SELECT a.account_id, b.* from user_account a INNER JOIN user_id b ON a.user_id = b.user_id WHERE a.account_id = $account";
+
+        return DBConnectionFactory::getConnection()->query($query)->fetchAll(\PDO::FETCH_ASSOC);
+    }
 }

@@ -24,4 +24,8 @@ class Account {
     public static function verifyToken(array $data){
     	return Account\Access::verifyToken($data);
     }
+
+    public static function viewAccount(int $account){
+        return Account\Account::viewAccount($account);
+    }
 }

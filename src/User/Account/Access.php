@@ -65,6 +65,22 @@ class Access {
         return $result[0] ?? false;
     }
 
+    public static function getUserIdFromEmail(array $data){
+        $username = $data["email"];
+
+        $query = "SELECT a.*, b.account_id FROM user_id a INNER JOIN user_account b ON a.user_id = b.user_id WHERE a.email_address = '$username'";
+        $result = DBConnectionFactory::getConnection()->query($query)->fetchAll(\PDO::FETCH_ASSOC);
+        return $result[0] ?? false;
+    }
+
+    public static function getUserIdFromPhone(array $data){
+        $username = $data["email"];
+
+        $query = "SELECT a.*, b.account_id FROM user_id a INNER JOIN user_account b ON a.user_id = b.user_id WHERE a.phone_number = '$username'";
+        $result = DBConnectionFactory::getConnection()->query($query)->fetchAll(\PDO::FETCH_ASSOC);
+        return $result[0] ?? false;
+    }
+
     public static function closeAccountSessions(int $account){
         $query = "SELECT lock_status FROM user_account WHERE account_id = $account";
         $result = DBConnectionFactory::getConnection()->query($query)->fetchAll(\PDO::FETCH_ASSOC);

@@ -26,6 +26,7 @@ class Links {
     	}
 
     	$query = "INSERT INTO user_profile_providers (user_id, user_provider_id, provider_id) VALUES ($user, $userProviderID, $provider)";
+        
         $result = DBConnectionFactory::getConnection()->exec($query);
 
         if ($result){
@@ -45,8 +46,9 @@ class Links {
         $query = "SELECT a.*, b.provider_alias, b.provider_status, c.profile_alias 
                     FROM user_profile_providers a 
                     INNER JOIN provider b ON a.provider_id = b.provider_id
-                    INNER JOIN user_profile_details c ON a.user_id = c.user_id
+                    INNER JOIN user_profile_details c ON c.profile_id = a.profile_id
                     WHERE a.user_id = $user";
+
         $result = DBConnectionFactory::getConnection()->query($query)->fetchAll(\PDO::FETCH_ASSOC);
 
         return $result;
