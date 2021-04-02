@@ -20,4 +20,8 @@ class Account {
     public static function setStatus(int $provider, array $data){
         return Account\Account::setStatus($provider, $data);
     }
+
+    public static function verifySecret(array $data){
+        return Account\Access::verifySecret($data);
+    }
 }

@@ -15,15 +15,16 @@ use EmmetBlue\Core\Logger\ErrorLog;
 use EmmetBlue\Core\Constant;
 
 class Account {
-	public static function create(int $user, array $data)
+	public static function create(array $data)
     {
     	$alias = $data["alias"] ?? null;
+        $secret = $token = bin2hex(random_bytes(32));
 
     	if (is_null($alias)){
     		throw new \Exception("Invalid data provided");
     	}
 
-    	$query = "INSERT INTO provider (provider_alias) VALUES ('$alias')";
+    	$query = "INSERT INTO provider (provider_alias, provider_secret) VALUES ('$alias', '$secret')";
         try {
             $result = DBConnectionFactory::getConnection()->exec($query);           
         }
