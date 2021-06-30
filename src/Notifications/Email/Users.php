@@ -3,9 +3,9 @@
  * @author Samuel Adeshina <samueladeshina73@gmail.com>
  */
 
-use EmmetBlue\Core\Factory\MailerFactory as MailerFactory;
-
 namespace EmmetBlue\Plugins\Notifications\Email;
+
+use EmmetBlue\Core\Factory\MailerFactory as MailerFactory;
 
 class Users {
 	public static function sendProviderRegistrationWelcomeEmail(int $user, string $email = ""){
