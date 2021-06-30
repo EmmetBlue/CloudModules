@@ -54,7 +54,7 @@ class Access {
     public static function getUserId(int $user){
         $query = "SELECT a.*, b.account_id FROM user_id a INNER JOIN user_account b ON a.user_id = b.user_id WHERE a.user_id = $user";
         $result = DBConnectionFactory::getConnection()->query($query)->fetchAll(\PDO::FETCH_ASSOC);
-        return $result[0] ?? false;
+        return $result[0] ?? [];
     }
 
     public static function getUserIdFromUsername(array $data){
@@ -62,7 +62,7 @@ class Access {
 
         $query = "SELECT a.*, b.account_id FROM user_id a INNER JOIN user_account b ON a.user_id = b.user_id WHERE b.username = '$username'";
         $result = DBConnectionFactory::getConnection()->query($query)->fetchAll(\PDO::FETCH_ASSOC);
-        return $result[0] ?? false;
+        return $result[0] ?? [];
     }
 
     public static function getUserIdFromEmail(array $data){
@@ -70,7 +70,7 @@ class Access {
 
         $query = "SELECT a.*, b.account_id FROM user_id a INNER JOIN user_account b ON a.user_id = b.user_id WHERE a.email_address = '$username'";
         $result = DBConnectionFactory::getConnection()->query($query)->fetchAll(\PDO::FETCH_ASSOC);
-        return $result[0] ?? false;
+        return $result[0] ?? [];
     }
 
     public static function getUserIdFromPhone(array $data){
@@ -78,7 +78,7 @@ class Access {
 
         $query = "SELECT a.*, b.account_id FROM user_id a INNER JOIN user_account b ON a.user_id = b.user_id WHERE a.phone_number = '$username'";
         $result = DBConnectionFactory::getConnection()->query($query)->fetchAll(\PDO::FETCH_ASSOC);
-        return $result[0] ?? false;
+        return $result[0] ?? [];
     }
 
     public static function closeAccountSessions(int $account){
