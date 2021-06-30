@@ -1,11 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "hash": "346a818e64f3a3ce9ad2f69cf61cc73b",
-    "content-hash": "74a235991a03f77e34e25dbcc4ca57da",
+    "content-hash": "05920fc33bafbe1eacd3b9e1150ce621",
     "packages": [
         {
             "name": "elasticsearch/elasticsearch",
@@ -59,25 +58,24 @@
                 "elasticsearch",
                 "search"
             ],
-            "time": "2016-11-30 17:15:05"
+            "time": "2016-11-30T17:15:05+00:00"
         },
         {
             "name": "emmetblue/emmet-blue",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/EmmetBlue/Emmet-Blue.git",
-                "reference": "f2282cee35400d3c92c32d8047289d7ca12af6dc"
+                "url": "https://github.com/Samshal/Emmet-Blue.git",
+                "reference": "977b2f5b442f2e2551c99201901fcf586de4ccf3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/EmmetBlue/Emmet-Blue/zipball/f2282cee35400d3c92c32d8047289d7ca12af6dc",
-                "reference": "f2282cee35400d3c92c32d8047289d7ca12af6dc",
+                "url": "https://api.github.com/repos/Samshal/Emmet-Blue/zipball/977b2f5b442f2e2551c99201901fcf586de4ccf3",
+                "reference": "977b2f5b442f2e2551c99201901fcf586de4ccf3",
                 "shasum": ""
             },
             "require": {
-                "elasticsearch/elasticsearch": "~2.0",
-                "phpmailer/phpmailer": "~5.2",
+                "phpmailer/phpmailer": "~5.2 || ~6.0",
                 "rmccue/requests": "^1.7",
                 "samshal/acl": "dev-master"
             },
@@ -87,6 +85,7 @@
                     "EmmetBlue\\": "./src"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -96,10 +95,8 @@
                     "email": "samueladeshina73@gmail.com"
                 }
             ],
-            "support": {
-                "source": "https://github.com/EmmetBlue/Emmet-Blue/tree/master"
-            },
-            "time": "2017-02-13 12:37:32"
+            "abandoned": "samshal/emmet-blue",
+            "time": "2021-05-29T13:27:55+00:00"
         },
         {
             "name": "guzzlehttp/ringphp",
@@ -150,7 +147,8 @@
                 }
             ],
             "description": "Provides a simple API and specification that abstracts away the details of HTTP into a single PHP function.",
-            "time": "2015-05-20 03:37:09"
+            "abandoned": true,
+            "time": "2015-05-20T03:37:09+00:00"
         },
         {
             "name": "guzzlehttp/streams",
@@ -200,7 +198,58 @@
                 "Guzzle",
                 "stream"
             ],
-            "time": "2014-10-12 19:18:40"
+            "abandoned": true,
+            "time": "2014-10-12T19:18:40+00:00"
+        },
+        {
+            "name": "j7mbo/twitter-api-php",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/J7mbo/twitter-api-php.git",
+                "reference": "f1a84c8c39a854ac7a8bc87e59c997b526c7bbc7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/J7mbo/twitter-api-php/zipball/f1a84c8c39a854ac7a8bc87e59c997b526c7bbc7",
+                "reference": "f1a84c8c39a854ac7a8bc87e59c997b526c7bbc7",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.5,>=4.5.1"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "TwitterAPIExchange.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GNU Public License"
+            ],
+            "authors": [
+                {
+                    "name": "James Mallison",
+                    "homepage": "https://github.com/j7mbo/twitter-api-php"
+                }
+            ],
+            "description": "Simple PHP Wrapper for Twitter API v1.1 calls",
+            "homepage": "https://github.com/j7mbo/twitter-api-php",
+            "keywords": [
+                "api",
+                "php",
+                "twitter"
+            ],
+            "time": "2017-05-08T16:51:49+00:00"
         },
         {
             "name": "phpmailer/phpmailer",
@@ -276,7 +325,7 @@
                 }
             ],
             "description": "PHPMailer is a full-featured email creation and transfer class for PHP",
-            "time": "2017-03-15 19:32:56"
+            "time": "2017-03-15T19:32:56+00:00"
         },
         {
             "name": "psr/log",
@@ -323,7 +372,7 @@
                 "psr",
                 "psr-3"
             ],
-            "time": "2016-10-10 12:19:37"
+            "time": "2016-10-10T12:19:37+00:00"
         },
         {
             "name": "react/promise",
@@ -369,7 +418,7 @@
                 "promise",
                 "promises"
             ],
-            "time": "2017-03-25 12:08:31"
+            "time": "2017-03-25T12:08:31+00:00"
         },
         {
             "name": "rmccue/requests",
@@ -418,7 +467,7 @@
                 "iri",
                 "sockets"
             ],
-            "time": "2016-10-13 00:11:37"
+            "time": "2016-10-13T00:11:37+00:00"
         },
         {
             "name": "samshal/acl",
@@ -426,12 +475,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Samshal/Acl.git",
-                "reference": "8add332d287c140477a3e5d312798e7e3509d428"
+                "reference": "4ed476400c9a4dd4b148e07db3f10a88a22e7e7b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Samshal/Acl/zipball/8add332d287c140477a3e5d312798e7e3509d428",
-                "reference": "8add332d287c140477a3e5d312798e7e3509d428",
+                "url": "https://api.github.com/repos/Samshal/Acl/zipball/4ed476400c9a4dd4b148e07db3f10a88a22e7e7b",
+                "reference": "4ed476400c9a4dd4b148e07db3f10a88a22e7e7b",
                 "shasum": ""
             },
             "require": {
@@ -454,14 +503,90 @@
                 }
             ],
             "description": "This package provides a lightweight and flexible access control list for privileges and permission management.",
-            "time": "2016-09-21 10:53:43"
+            "time": "2020-09-18T00:33:01+00:00"
+        },
+        {
+            "name": "samshal/emmet-blue",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Samshal/Emmet-Blue.git",
+                "reference": "977b2f5b442f2e2551c99201901fcf586de4ccf3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Samshal/Emmet-Blue/zipball/977b2f5b442f2e2551c99201901fcf586de4ccf3",
+                "reference": "977b2f5b442f2e2551c99201901fcf586de4ccf3",
+                "shasum": ""
+            },
+            "require": {
+                "phpmailer/phpmailer": "~5.2 || ~6.0",
+                "rmccue/requests": "^1.7",
+                "samshal/acl": "dev-master"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "EmmetBlue\\": "./src"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Samshal",
+                    "email": "samueladeshina73@gmail.com"
+                }
+            ],
+            "support": {
+                "source": "https://github.com/Samshal/Emmet-Blue/tree/master"
+            },
+            "time": "2021-05-29T13:27:55+00:00"
+        },
+        {
+            "name": "samshal/rando",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Samshal/Rando.git",
+                "reference": "6941a2572f335aa0028db59f481be8f7081d078b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Samshal/Rando/zipball/6941a2572f335aa0028db59f481be8f7081d078b",
+                "reference": "6941a2572f335aa0028db59f481be8f7081d078b",
+                "shasum": ""
+            },
+            "require": {
+                "j7mbo/twitter-api-php": "dev-master"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Samshal\\Rando\\": "./src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Samuel Adeshina",
+                    "email": "samueladeshina73@gmail.com"
+                }
+            ],
+            "description": "Rando is a minimalist generator of random strings, numbers and so on to help reduce some monotony particularly while writing automated tests or anywhere else you need anything random",
+            "time": "2017-02-16T08:05:00+00:00"
         }
     ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "emmetblue/emmet-blue": 20
+        "samshal/emmet-blue": 20,
+        "samshal/rando": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
@@ -469,5 +594,6 @@
     "platform-dev": [],
     "platform-overrides": {
         "php": "7.0"
-    }
+    },
+    "plugin-api-version": "1.1.0"
 }

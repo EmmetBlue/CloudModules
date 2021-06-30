@@ -34,8 +34,12 @@ class UserProfile {
     }
 
     public static function registerNewUser(array $data){
-        print_r($data);
-        die();
-        return \EmmetBlue\Plugins\User\Registration::newRegistration($data);
+        $result = \EmmetBlue\Plugins\User\Registration::newRegistration($data);
+
+        $userDetails = self::retrieveUserAccountDetailsByEmail(["email"=>$data["email"]]);
+
+        \EmmetBlue\Plugins\Notifications\Email\Users::sendProviderRegistrationWelcomeEmail($userDetails["user_id"], $data["email"]);
+
+        return $userDetails;
     }
 }

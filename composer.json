@@ -19,7 +19,8 @@
         }
     ],
     "require": {
-        "samshal/emmet-blue":"dev-master"
+        "samshal/emmet-blue":"dev-master",
+        "samshal/rando": "dev-master"
     },
     "autoload":{
         "psr-4":{

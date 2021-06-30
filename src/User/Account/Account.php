@@ -13,6 +13,7 @@ use EmmetBlue\Core\Session\Session;
 use EmmetBlue\Core\Logger\DatabaseLog;
 use EmmetBlue\Core\Logger\ErrorLog;
 use EmmetBlue\Core\Constant;
+use Samshal\Rando\Rando as Rando;
 
 class Account {
 	public static function create(int $user, array $data)
@@ -58,5 +59,22 @@ class Account {
         $query = "SELECT a.account_id, b.* from user_account a INNER JOIN user_id b ON a.user_id = b.user_id WHERE a.account_id = $account";
 
         return DBConnectionFactory::getConnection()->query($query)->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    public static function generateVerificationToken(int $user){
+        $token = Rando::text(["length"=>7]);
+
+        $query = "SELECT * FROM user_verification_token WHERE user_id=$user";
+        $result = DBConnectionFactory::getConnection()->query($query)->fetchAll(\PDO::FETCH_ASSOC);
+        if (count($result) > 0){
+            $query = "UPDATE user_verification_token SET token='$token', token_guesses=0 WHERE user_id = $user";
+        }
+        else {
+            $query = "INSERT INTO user_verification_token (user_id, token, token_guesses) VALUES ($user, '$token', 0) ";
+        }
+
+        $result = DBConnectionFactory::getConnection()->exec($query);
+
+        return ["token"=>$token, "user"=>$user];
     }
 }

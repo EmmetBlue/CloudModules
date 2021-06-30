@@ -21,7 +21,7 @@ class Registration {
     	$password = $data["password"] ?? null;
     	$alias = $data["alias"] ?? null;
     	$mail = $data["email"] ?? null;
-
+        
     	if (is_null($username) || is_null($password) || is_null($mail) || is_null($alias)){
     		throw new \Exception("Invalid data provided");
     	}
