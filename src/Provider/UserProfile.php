@@ -9,10 +9,6 @@ class UserProfile {
         return UserProfile\Links::newLink($user, $data);
     }
 
-    public static function registerNewUser(array $data){
-        return \EmmetBlue\Plugins\User\Registration::newRegistration($data);
-    }
-
     public static function viewProviders(int $user){
         return UserProfile\Links::viewLinks($user);
     }
@@ -35,5 +31,11 @@ class UserProfile {
 
     public static function uploadData(int $profile, array $data){
         return \EmmetBlue\Plugins\User\Profile::addData($profile, $data);
+    }
+
+    public static function registerNewUser(array $data){
+        print_r($data);
+        die();
+        return \EmmetBlue\Plugins\User\Registration::newRegistration($data);
     }
 }
