@@ -9,6 +9,10 @@ class UserProfile {
         return UserProfile\Links::newLink($user, $data);
     }
 
+    public static function registerNewUser(array $data){
+        return \EmmetBlue\Plugins\User\Registration::newRegistration($data);
+    }
+
     public static function viewProviders(int $user){
         return UserProfile\Links::viewLinks($user);
     }
