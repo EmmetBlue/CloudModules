@@ -23,8 +23,8 @@ class Users {
             "replyTo"=>"info@emmetblue.ng"
         ];
 
-        $recipient = [
-            ["address"]=>$email
+        $recipients = [
+            ["address"=>$email]
         ];
 
         $message = [
@@ -34,7 +34,7 @@ class Users {
             "isHtml"=>true
         ];
 
-        $mailObj = new MailerFactory($sender, $recipient, $message);
+        $mailObj = new MailerFactory($sender, $recipients, $message);
 
         return $mailObj->send();
     }
