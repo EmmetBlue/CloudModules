@@ -24,13 +24,14 @@ class Users {
 
 	public static function sendProviderRegistrationWelcomeEmail(int $user, string $email = ""){
         $verToken = \EmmetBlue\Plugins\User\Account\Account::generateVerificationToken($user);
-        $token = $verToken["token"];
+        $token = htmlentities($verToken["token"]);
 
         $configs = self::getConfigs();
 
         $currentPath = $configs["path"];
         $emailBody = file_get_contents($currentPath."/Users/provider-registration-welcome-email.body.html");
         $emailBody = str_replace("{{token}}", $token, $emailBody);
+        $emailBody = str_replace("{{id}}", $user, $emailBody);
 
         $emailSubject = file_get_contents($currentPath."/Users/provider-registration-welcome-email.subject.html");
 
