@@ -26,9 +26,9 @@ class Users {
         $verToken = \EmmetBlue\Plugins\User\Account\Account::generateVerificationToken($user);
         $token = urlencode($verToken["token"]);
 
-        $configs = self::getConfigs();
+        // $configs = self::getConfigs();
 
-        $currentPath = $configs["path"];
+        // $currentPath = $configs["path"];
         // $emailBody = file_get_contents($currentPath."\Users\provider-registration-welcome-email.body.html");
         // $emailBody = str_replace("{{token}}", $token, $emailBody);
         // $emailBody = str_replace("{{id}}", $user, $emailBody);
@@ -39,10 +39,16 @@ class Users {
 
         $emailSubject = "Welcome to EmmetBlue";
 
+        // $sender = [
+        //     "address"=>$configs["config"]->user,
+        //     "name"=>$configs["config"]->name,
+        //     "replyTo"=>$configs["config"]->user
+        // ];
+
         $sender = [
-            "address"=>$configs["config"]->user,
-            "name"=>$configs["config"]->name,
-            "replyTo"=>$configs["config"]->user
+            "address"=>"samuel@myclinic.ng",
+            "name"=>"EmmetBlue",
+            "replyTo"=>"samuel@myclinic.ng"
         ];
 
         $recipients = [
