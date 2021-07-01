@@ -82,6 +82,8 @@ class Users {
             "isHtml"=>true
         ];
 
+        return [$sender, $recipients, $message];
+
         $mailObj = new MailerFactory($sender, $recipients, $message);
 
         return $mailObj->send();
