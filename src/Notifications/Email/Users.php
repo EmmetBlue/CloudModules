@@ -26,29 +26,19 @@ class Users {
         $verToken = \EmmetBlue\Plugins\User\Account\Account::generateVerificationToken($user);
         $token = urlencode($verToken["token"]);
 
-        // $configs = self::getConfigs();
+        $configs = self::getConfigs();
 
-        // $currentPath = $configs["path"];
-        // $emailBody = file_get_contents($currentPath."\Users\provider-registration-welcome-email.body.html");
-        // $emailBody = str_replace("{{token}}", $token, $emailBody);
-        // $emailBody = str_replace("{{id}}", $user, $emailBody);
+        $currentPath = $configs["path"];
+        $emailBody = file_get_contents($currentPath."/Users/provider-registration-welcome-email.body.html");
+        $emailBody = str_replace("{{token}}", $token, $emailBody);
+        $emailBody = str_replace("{{id}}", $user, $emailBody);
 
-        // $emailSubject = file_get_contents($currentPath."\Users\provider-registration-welcome-email.subject.html");
-
-        $emailBody = "<a href='http://phi.emmetblue.ng/complete-signup?id=$user&token=$token'><button>Activate your account</button></a>";
-
-        $emailSubject = "Welcome to EmmetBlue";
-
-        // $sender = [
-        //     "address"=>$configs["config"]->user,
-        //     "name"=>$configs["config"]->name,
-        //     "replyTo"=>$configs["config"]->user
-        // ];
+        $emailSubject = file_get_contents($currentPath."/Users/provider-registration-welcome-email.subject.html");
 
         $sender = [
-            "address"=>"samuel@myclinic.ng",
-            "name"=>"EmmetBlue",
-            "replyTo"=>"samuel@myclinic.ng"
+            "address"=>$configs["config"]->user,
+            "name"=>$configs["config"]->name,
+            "replyTo"=>$configs["config"]->user
         ];
 
         $recipients = [
@@ -62,8 +52,6 @@ class Users {
             "isHtml"=>true
         ];
 
-        return [$sender, $recipients, $message];
-
         $mailObj = new MailerFactory($sender, $recipients, $message);
 
         return $mailObj->send();
@@ -74,8 +62,8 @@ class Users {
 
         $currentPath = $configs["path"];
 
-        $emailBody = file_get_contents($currentPath."\Users\demo.body.html");
-        $emailSubject = file_get_contents($currentPath."\Users\demo.subject.html");
+        $emailBody = file_get_contents($currentPath."/Users/demo.body.html");
+        $emailSubject = file_get_contents($currentPath."/Users/demo.subject.html");
 
         $sender = [
             "address"=>$configs["config"]->user,
