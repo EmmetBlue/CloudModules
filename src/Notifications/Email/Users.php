@@ -6,6 +6,7 @@
 namespace EmmetBlue\Plugins\Notifications\Email;
 
 use EmmetBlue\Core\Factory\MailerFactory as MailerFactory;
+use EmmetBlue\Core\Constant;
 
 class Users {
 
