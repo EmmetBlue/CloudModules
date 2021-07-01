@@ -25,8 +25,6 @@ class Profile {
 
         $query = "INSERT INTO user_profile_data (profile_id, item_key, item_value) VALUES ".implode(", ", $values);
 
-        // die($query);
-
         $result = DBConnectionFactory::getConnection()->exec($query);
 
         return $result;
