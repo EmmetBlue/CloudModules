@@ -28,16 +28,16 @@ class Users {
 
         $configs = self::getConfigs();
 
-        $currentPath = $configs["path"];
+        $currentPath = $configs["config"]["path"];
         $emailBody = file_get_contents($currentPath."/Users/provider-registration-welcome-email.body.html");
         $emailBody = str_replace("{{token}}", $token, $emailBody);
 
         $emailSubject = file_get_contents($currentPath."/Users/provider-registration-welcome-email.subject.html");
 
         $sender = [
-            "address"=>$configs["user"],
-            "name"=>$configs["name"],
-            "replyTo"=>$configs["user"]
+            "address"=>$configs["config"]["user"],
+            "name"=>$configs["config"]["name"],
+            "replyTo"=>$configs["config"]["user"]
         ];
 
         $recipients = [
@@ -59,15 +59,15 @@ class Users {
     public static function sendDemoEmail(string $email = ""){
         $configs = self::getConfigs();
 
-        $currentPath = $configs["path"];
+        $currentPath = $configs["config"]["path"];
 
         $emailBody = file_get_contents($currentPath."/Users/demo.body.html");
         $emailSubject = file_get_contents($currentPath."/Users/demo.subject.html");
 
         $sender = [
-            "address"=>$configs["user"],
-            "name"=>$configs["name"],
-            "replyTo"=>$configs["user"]
+            "address"=>$configs["config"]["user"],
+            "name"=>$configs["config"]["name"],
+            "replyTo"=>$configs["config"]["user"]
         ];
 
         $recipients = [
