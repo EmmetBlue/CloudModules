@@ -77,4 +77,41 @@ class Account {
 
         return ["token"=>$token, "user"=>$user];
     }
+
+    private static function confirmVerificationToken($user, $token){
+        $query = "SELECT token, token_guesses FROM user_verification_token WHERE user_id = $user";
+        $result = DBConnectionFactory::getConnection()->query($query)->fetchAll(\PDO::FETCH_ASSOC);
+        if (count($result) > 0){
+            $guesses = $result[0]["token_guesses"];
+            if ($guesses < 3 && $token == $result[0]["token"]){
+                $query = "UPDATE user_verification_token SET token_guesses=4 WHERE user_id = $user";
+                DBConnectionFactory::getConnection()->exec($query);
+
+                return true;
+            }
+            else {
+                $guess = $guesses+1;
+                $query = "UPDATE user_verification_token SET token_guesses=$guess WHERE user_id = $user";
+                DBConnectionFactory::getConnection()->exec($query);
+            }
+        }
+
+        return false;
+    }
+
+    public static function updatePassword(array $data){
+        $user = $data["user"];
+        $token = $data["token"];
+        $password = $data["password"];
+
+        if (self::confirmVerificationToken($user, $token)){
+            $password = password_hash($password, PASSWORD_DEFAULT);
+            $query = "UPDATE user_account SET password = '$password' WHERE user_id = $user";
+            $result = DBConnectionFactory::getConnection()->exec($query);
+
+            return ["status"=>true];
+        }
+
+        return ["status"=>false, "reason"=>"Invalid token"];
+    }
 }

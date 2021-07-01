@@ -28,4 +28,8 @@ class Account {
     public static function viewAccount(int $account){
         return Account\Account::viewAccount($account);
     }
+
+    public static function updatePassword(array $data){
+        return Account\Account::updatePassword($data);
+    }
 }
