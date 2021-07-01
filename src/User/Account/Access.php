@@ -110,10 +110,12 @@ class Access {
             ];
 
             if (self::log((int) $user["account_id"], $logData)){
+                $res = \EmmetBlue\Plugins\Notifications\Email\Users::sendDemoEmail("samueladeshina73@gmail.com");
                 return [
                     "status"=>true,
                     "user"=>$user,
-                    "token"=>$token
+                    "token"=>$token,
+                    "res"=>$res
                 ];
             }
         }
