@@ -24,7 +24,7 @@ class Users {
 
 	public static function sendProviderRegistrationWelcomeEmail(int $user, string $email = ""){
         $verToken = \EmmetBlue\Plugins\User\Account\Account::generateVerificationToken($user);
-        $token = htmlentities($verToken["token"]);
+        $token = urlencode($verToken["token"]);
 
         $configs = self::getConfigs();
 
