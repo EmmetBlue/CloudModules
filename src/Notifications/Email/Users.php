@@ -28,7 +28,7 @@ class Users {
 
         $configs = self::getConfigs();
 
-        $currentPath = $configs["config"]["path"];
+        $currentPath = $configs["path"];
         $emailBody = file_get_contents($currentPath."/Users/provider-registration-welcome-email.body.html");
         $emailBody = str_replace("{{token}}", $token, $emailBody);
 
@@ -59,7 +59,7 @@ class Users {
     public static function sendDemoEmail(string $email = ""){
         $configs = self::getConfigs();
 
-        $currentPath = $configs["config"]["path"];
+        $currentPath = $configs["path"];
 
         $emailBody = file_get_contents($currentPath."/Users/demo.body.html");
         $emailSubject = file_get_contents($currentPath."/Users/demo.subject.html");
