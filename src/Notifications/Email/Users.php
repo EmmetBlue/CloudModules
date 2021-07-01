@@ -29,11 +29,15 @@ class Users {
         $configs = self::getConfigs();
 
         $currentPath = $configs["path"];
-        $emailBody = file_get_contents($currentPath."\Users\provider-registration-welcome-email.body.html");
-        $emailBody = str_replace("{{token}}", $token, $emailBody);
-        $emailBody = str_replace("{{id}}", $user, $emailBody);
+        // $emailBody = file_get_contents($currentPath."\Users\provider-registration-welcome-email.body.html");
+        // $emailBody = str_replace("{{token}}", $token, $emailBody);
+        // $emailBody = str_replace("{{id}}", $user, $emailBody);
 
-        $emailSubject = file_get_contents($currentPath."\Users\provider-registration-welcome-email.subject.html");
+        // $emailSubject = file_get_contents($currentPath."\Users\provider-registration-welcome-email.subject.html");
+
+        $emailBody = "<a href='http://phi.emmetblue.ng/complete-signup?id=$user&token=$token'><button>Activate your account</button></a>";
+
+        $emailSubject = "Welcome to EmmetBlue";
 
         $sender = [
             "address"=>$configs["config"]->user,
