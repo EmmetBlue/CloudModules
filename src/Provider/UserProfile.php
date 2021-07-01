@@ -38,7 +38,7 @@ class UserProfile {
 
         $userDetails = self::retrieveUserAccountDetailsByEmail(["email"=>$data["email"]]);
 
-        $result = \EmmetBlue\Plugins\Notifications\Email\Users::sendProviderRegistrationWelcomeEmail($userDetails["user_id"], $data["email"]);
+        // $result = \EmmetBlue\Plugins\Notifications\Email\Users::sendProviderRegistrationWelcomeEmail($userDetails["user_id"], $data["email"]);
 
         $userDetails["emailNotification"] = $result;
         
