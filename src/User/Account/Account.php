@@ -109,7 +109,10 @@ class Account {
             $query = "UPDATE user_account SET password = '$password' WHERE user_id = $user";
             $result = DBConnectionFactory::getConnection()->exec($query);
 
-            return ["status"=>true];
+            $query = "SELECT username FROM user_account WHERE user_id = $user";
+            $result = DBConnectionFactory::getConnection()->query($query)->fetchAll(\PDO::FETCH_ASSOC);
+
+            return ["status"=>true, "account"=>$result[0]];
         }
 
         return ["status"=>false, "reason"=>"Invalid token"];
