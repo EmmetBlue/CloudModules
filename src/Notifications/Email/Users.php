@@ -22,7 +22,7 @@ class Users {
         ];
     }
 
-	public static function sendProviderRegistrationWelcomeEmail(int $user, string $email = ""){
+	public static function sendProviderRegistrationWelcomeEmail($user, $email = ""){
         $verToken = \EmmetBlue\Plugins\User\Account\Account::generateVerificationToken($user);
         $token = urlencode($verToken["token"]);
 
