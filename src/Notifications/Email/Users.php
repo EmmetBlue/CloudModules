@@ -36,8 +36,6 @@ class Users {
             "isHtml"=>true
         ];
 
-        return $message;
-
         $mailObj = new MailerFactory($sender, $recipients, $message);
 
         return $mailObj->send();
@@ -65,8 +63,6 @@ class Users {
             "alt"=>"",
             "isHtml"=>true
         ];
-
-        return $message;
 
         $mailObj = new MailerFactory($sender, $recipients, $message);
 
