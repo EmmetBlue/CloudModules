@@ -8,14 +8,16 @@ namespace EmmetBlue\Plugins\Notifications\Email;
 use EmmetBlue\Core\Factory\MailerFactory as MailerFactory;
 
 class Users {
+
 	public static function sendProviderRegistrationWelcomeEmail(int $user, string $email = ""){
         $verToken = \EmmetBlue\Plugins\User\Account\Account::generateVerificationToken($user);
         $token = $verToken["token"];
 
-        $emailBody = file_get_contents("./Users/provider-registration-welcome-email.body.html");
+        $currentPath = dirname(__FILE__);
+        $emailBody = file_get_contents($currentPath."/Users/provider-registration-welcome-email.body.html");
         $emailBody = str_replace("{{token}}", $token, $emailBody);
 
-        $emailSubject = file_get_contents("./Users/provider-registration-welcome-email.subject.html");
+        $emailSubject = file_get_contents($currentPath."/Users/provider-registration-welcome-email.subject.html");
 
         $sender = [
             "address"=>"info@emmetblue.ng",
@@ -42,9 +44,10 @@ class Users {
     }
 
     public static function sendDemoEmail(string $email = ""){
-        $emailBody = file_get_contents("./Users/demo.body.html");
+        $currentPath = dirname(__FILE__);
 
-        $emailSubject = file_get_contents("./Users/demo.subject.html");
+        $emailBody = file_get_contents($currentPath."/Users/demo.body.html");
+        $emailSubject = file_get_contents($currentPath."/Users/demo.subject.html");
 
         $sender = [
             "address"=>"info@emmetblue.ng",
