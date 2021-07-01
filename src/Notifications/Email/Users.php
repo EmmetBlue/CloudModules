@@ -9,20 +9,34 @@ use EmmetBlue\Core\Factory\MailerFactory as MailerFactory;
 
 class Users {
 
+    private static function getConfigs(){
+        $smtpConfigJson = file_get_contents(Constant::getGlobals()["config-dir"]["smtp-config"]);
+
+        $smtpConfig = json_decode($smtpConfigJson);
+        $currentPath = dirname(__FILE__);
+
+        return [
+            "path"=>$currentPath,
+            "config"=>$smtpConfig
+        ];
+    }
+
 	public static function sendProviderRegistrationWelcomeEmail(int $user, string $email = ""){
         $verToken = \EmmetBlue\Plugins\User\Account\Account::generateVerificationToken($user);
         $token = $verToken["token"];
 
-        $currentPath = dirname(__FILE__);
+        $configs = self::getConfigs();
+
+        $currentPath = $configs["path"];
         $emailBody = file_get_contents($currentPath."/Users/provider-registration-welcome-email.body.html");
         $emailBody = str_replace("{{token}}", $token, $emailBody);
 
         $emailSubject = file_get_contents($currentPath."/Users/provider-registration-welcome-email.subject.html");
 
         $sender = [
-            "address"=>"info@emmetblue.ng",
-            "name"=>"EmmetBlue",
-            "replyTo"=>"info@emmetblue.ng"
+            "address"=>$configs["user"],
+            "name"=>$configs["name"],
+            "replyTo"=>$configs["user"]
         ];
 
         $recipients = [
@@ -42,15 +56,17 @@ class Users {
     }
 
     public static function sendDemoEmail(string $email = ""){
-        $currentPath = dirname(__FILE__);
+        $configs = self::getConfigs();
+
+        $currentPath = $configs["path"];
 
         $emailBody = file_get_contents($currentPath."/Users/demo.body.html");
         $emailSubject = file_get_contents($currentPath."/Users/demo.subject.html");
 
         $sender = [
-            "address"=>"info@emmetblue.ng",
-            "name"=>"EmmetBlue",
-            "replyTo"=>"info@emmetblue.ng"
+            "address"=>$configs["user"],
+            "name"=>$configs["name"],
+            "replyTo"=>$configs["user"]
         ];
 
         $recipients = [
