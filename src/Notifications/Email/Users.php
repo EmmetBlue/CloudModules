@@ -29,11 +29,11 @@ class Users {
         $configs = self::getConfigs();
 
         $currentPath = $configs["path"];
-        $emailBody = file_get_contents($currentPath."/Users/provider-registration-welcome-email.body.html");
+        $emailBody = file_get_contents($currentPath."\Users\provider-registration-welcome-email.body.html");
         $emailBody = str_replace("{{token}}", $token, $emailBody);
         $emailBody = str_replace("{{id}}", $user, $emailBody);
 
-        $emailSubject = file_get_contents($currentPath."/Users/provider-registration-welcome-email.subject.html");
+        $emailSubject = file_get_contents($currentPath."\Users\provider-registration-welcome-email.subject.html");
 
         $sender = [
             "address"=>$configs["config"]->user,
@@ -64,8 +64,8 @@ class Users {
 
         $currentPath = $configs["path"];
 
-        $emailBody = file_get_contents($currentPath."/Users/demo.body.html");
-        $emailSubject = file_get_contents($currentPath."/Users/demo.subject.html");
+        $emailBody = file_get_contents($currentPath."\Users\demo.body.html");
+        $emailSubject = file_get_contents($currentPath."\Users\demo.subject.html");
 
         $sender = [
             "address"=>$configs["config"]->user,
