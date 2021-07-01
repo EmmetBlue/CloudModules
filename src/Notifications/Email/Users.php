@@ -35,9 +35,9 @@ class Users {
         $emailSubject = file_get_contents($currentPath."/Users/provider-registration-welcome-email.subject.html");
 
         $sender = [
-            "address"=>$configs["config"]["user"],
-            "name"=>$configs["config"]["name"],
-            "replyTo"=>$configs["config"]["user"]
+            "address"=>$configs["config"]->user,
+            "name"=>$configs["config"]->name,
+            "replyTo"=>$configs["config"]->user
         ];
 
         $recipients = [
@@ -65,9 +65,9 @@ class Users {
         $emailSubject = file_get_contents($currentPath."/Users/demo.subject.html");
 
         $sender = [
-            "address"=>$configs["config"]["user"],
-            "name"=>$configs["config"]["name"],
-            "replyTo"=>$configs["config"]["user"]
+            "address"=>$configs["config"]->user,
+            "name"=>$configs["config"]->name,
+            "replyTo"=>$configs["config"]->user
         ];
 
         $recipients = [
