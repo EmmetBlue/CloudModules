@@ -62,7 +62,7 @@ class Account {
     }
 
     public static function generateVerificationToken(int $user){
-        $token = Rando::text(["length"=>7]);
+        $token = substr(str_shuffle(MD5(microtime())), 0, 7);; //Rando::text(["length"=>7]);
 
         $query = "SELECT * FROM user_verification_token WHERE user_id=$user";
         $result = DBConnectionFactory::getConnection()->query($query)->fetchAll(\PDO::FETCH_ASSOC);
